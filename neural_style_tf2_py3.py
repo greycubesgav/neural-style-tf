@@ -8,10 +8,10 @@ import time
 import cv2
 import os
 
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
+physical_devices = tf.config.list_physical_devices('GPU')
+if physical_devices:
   try:
-    tf.config.experimental.set_virtual_device_configuration(gpus[0], [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=6144)])
+    tf.config.experimental.set_memory_growth(physical_devices[0], True)
   except RuntimeError as e:
     print(e)
 
